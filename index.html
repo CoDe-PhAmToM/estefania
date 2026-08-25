@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitácora — Gestor de Tareas Académicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="noise"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand__mark">B.</span>
+    <div class="brand__text">
+      <h1>Bitácora</h1>
+      <p>gestor de tareas académicas</p>
+    </div>
+  </div>
+
+  <div class="ring-stat" id="ringStat" title="Avance de tareas completadas">
+    <svg viewBox="0 0 120 120" class="ring-stat__svg">
+      <circle cx="60" cy="60" r="52" class="ring-stat__track"></circle>
+      <circle cx="60" cy="60" r="52" class="ring-stat__fill" id="ringFill"></circle>
+    </svg>
+    <div class="ring-stat__label">
+      <strong id="ringPercent">0%</strong>
+      <span>avance</span>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="panel panel--form">
+    <h2 class="panel__title">Nueva entrada</h2>
+    <form id="taskForm" class="task-form" autocomplete="off">
+      <label class="field">
+        <span>Materia / actividad</span>
+        <input type="text" id="taskTitle" placeholder="Ej. Preparación de defensa — Auxiliatura" required>
+      </label>
+
+      <div class="field-row">
+        <label class="field">
+          <span>Prioridad</span>
+          <select id="taskPriority">
+            <option value="alta">Alta</option>
+            <option value="media" selected>Media</option>
+            <option value="baja">Baja</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Fecha límite</span>
+          <input type="date" id="taskDate">
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Notas (opcional)</span>
+        <textarea id="taskNotes" rows="2" placeholder="Detalles, enlaces, recordatorios..."></textarea>
+      </label>
+
+      <button type="submit" class="btn btn--primary">Agregar a la bitácora</button>
+    </form>
+  </section>
+
+  <section class="panel panel--list">
+    <div class="list-header">
+      <h2 class="panel__title">Bitácora de tareas</h2>
+      <div class="tabs" id="tabs">
+        <button class="tab is-active" data-filter="todas">Todas</button>
+        <button class="tab" data-filter="pendientes">Pendientes</button>
+        <button class="tab" data-filter="completadas">Completadas</button>
+      </div>
+    </div>
+
+    <ul id="taskList" class="task-list"></ul>
+
+    <p id="emptyState" class="empty-state">
+      Aún no hay entradas. Registra tu primera tarea desde el formulario.
+    </p>
+  </section>
+
+  <aside class="panel panel--stats">
+    <h2 class="panel__title">Resumen</h2>
+    <dl class="stats-grid">
+      <div class="stat">
+        <dt>Total</dt>
+        <dd id="statTotal">0</dd>
+      </div>
+      <div class="stat">
+        <dt>Pendientes</dt>
+        <dd id="statPending">0</dd>
+      </div>
+      <div class="stat">
+        <dt>Completadas</dt>
+        <dd id="statDone">0</dd>
+      </div>
+      <div class="stat">
+        <dt>Prioridad alta</dt>
+        <dd id="statHigh">0</dd>
+      </div>
+    </dl>
+
+    <div class="legend">
+      <span class="legend__dot legend__dot--alta"></span> Alta
+      <span class="legend__dot legend__dot--media"></span> Media
+      <span class="legend__dot legend__dot--baja"></span> Baja
+    </div>
+
+    <button id="clearDone" class="btn btn--ghost">Limpiar completadas</button>
+  </aside>
+
+</main>
+
+<footer class="footer">
+  <p>Datos guardados localmente en este navegador · sin servidor, sin cuentas.</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
